@@ -1,0 +1,29 @@
+{
+  "name": "coinedonechallenge",
+  "version": "1.0.0",
+  "description": "BackEnd-Challenge-CoinedOne",
+  "main": "server.js",
+  "scripts": {
+    "dev": "nodemon server.js",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rohit-vrrr/CoinedOneChallenge.git"
+  },
+  "author": "Rohit",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rohit-vrrr/CoinedOneChallenge/issues"
+  },
+  "homepage": "https://github.com/rohit-vrrr/CoinedOneChallenge#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.14"
+  },
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "lodash": "^4.17.21",
+    "mongoose": "^6.0.12"
+  }
+}
