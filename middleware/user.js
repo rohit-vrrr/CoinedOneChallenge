@@ -57,11 +57,17 @@ let obj = {
                         const range2 = moment.range(selectedStartTime, selectedEndTime);
 
                         if(range1.overlaps(range2)) {
-                            res.status(409).send({
-                                success: false,
-                                message: "Selected time is overlapping with existing work time"
-                            });
-                            throw new Error("Conflict");
+
+                            const result = workDay.daysActive.filter(item => req.body.workDays.daysActive.includes(item));
+                            if(result.length === 0) {
+                                return;
+                            } else {
+                                res.status(409).send({
+                                    success: false,
+                                    message: "Selected time is overlapping with existing work time"
+                                });
+                                throw new Error("Conflict");
+                            }
                         }
                     });
 
@@ -74,6 +80,33 @@ let obj = {
                 }
             }
         })
+    },
+
+    checkWorkTimeLimit: (req, res, next) => {
+
+        let name = req.params.name;
+        const workDaysLimit = 5;
+
+        User.UserModel.findOne({ name }, async (err, user) => {
+
+            if(err) {
+                res.status(400).send(err.message);
+            } else {
+
+                if(user) {
+
+                    if(user.workDays.length == workDaysLimit) {
+                        res.status(400).send({
+                            success: false,
+                            message: `Work time maximum limit reached (max ${workDaysLimit} entires)`
+                        });
+                        throw new Error("Work Time Max Limit Reached");
+                    } else {
+                        next();
+                    }
+                }
+            }
+        });
     }
 }
 

@@ -70,9 +70,13 @@ router.get('/:name', (req, res) => {
 
 /**
  * Adding more work time
- * Middleware - Checking for time overlaps
+ * Middleware1 - Checking for time overlaps w.r.t. day & time
+ * Middleware2 - Check number of entries (to not exceed 5)
  */
-router.put('/updateWorkTime/:name', userMiddleware.checkTimeOverlap, (req, res) => {
+router.put('/updateWorkTime/:name',
+    userMiddleware.checkTimeOverlap,
+    userMiddleware.checkWorkTimeLimit,
+    (req, res) => {
 
     let name = req.params.name;
 
