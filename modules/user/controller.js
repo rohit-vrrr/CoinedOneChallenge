@@ -132,7 +132,7 @@ router.get('/:name/getAll', (req, res) => {
                             name: _.capitalize(user.name),
                             workDays: user.workDays,
                             blockedApps: user.blockedApps,
-                            limitedAps: user.limitedApps
+                            limitedApps: user.limitedApps
                         }
                     });
                 } else {
