@@ -161,7 +161,7 @@ router.get('/:name/getAll', (req, res) => {
 
             if(user) {
                 if(user.name === name) {
-                    User.UserModel.find({}, { workDays: 1, _id: 0 }, (e, data) => {
+                    User.UserModel.find({ name }, { workDays: 1, _id: 0 }, (e, data) => {
                         if(e) {
                             res.status(400).send(e.message);
                         } else {
@@ -199,7 +199,7 @@ router.get('/:name/getBlockedApps', (req, res) => {
 
             if(user) {
                 if(user.name === name) {
-                    User.UserModel.find({}, { blockedApps: 1, _id: 0 }, (e, data) => {
+                    User.UserModel.find({ name }, { blockedApps: 1, _id: 0 }, (e, data) => {
                         if(e) {
                             res.status(400).send(e.message);
                         } else {
@@ -237,7 +237,7 @@ router.get('/:name/getLimitedApps', (req, res) => {
 
             if(user) {
                 if(user.name === name) {
-                    User.UserModel.find({}, { limitedApps: 1, _id: 0 }, (e, data) => {
+                    User.UserModel.find({ name }, { limitedApps: 1, _id: 0 }, (e, data) => {
                         if(e) {
                             res.status(400).send(e.message);
                         } else {
